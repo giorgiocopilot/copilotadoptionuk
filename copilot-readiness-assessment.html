@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Copilot Readiness Assessment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet">
+<style>
+/* Art direction: Enterprise M365 Copilot readiness tool -> confident, precise, CFO-ready
+   Palette: cool neutral + single teal accent
+   Typography: Cabinet Grotesk (display) + General Sans (body)
+   Density: balanced, mobile-first */
+:root, [data-theme="light"] {
+  --color-bg:#f7f6f2; --color-surface:#ffffff; --color-surface-2:#fbfbf9;
+  --color-surface-offset:#f1efe9; --color-surface-offset-2:#e9e6df;
+  --color-divider:#e2dfd8; --color-border:#d7d3ca;
+  --color-text:#1f2320; --color-text-muted:#5c6259; --color-text-faint:#9a9d94;
+  --color-text-inverse:#f9f8f4;
+  --color-primary:#0e7c72; --color-primary-hover:#0a5f58; --color-primary-active:#08494a;
+  --color-primary-highlight:#d7e7e3;
+  --color-success:#3f7a35; --color-success-highlight:#dcead6;
+  --color-warning:#a15b16; --color-warning-highlight:#efdcc4;
+  --color-error:#a13636; --color-error-highlight:#f0d6d3;
+  --radius-sm:.375rem; --radius-md:.5rem; --radius-lg:.75rem; --radius-xl:1rem; --radius-full:9999px;
+  --transition-interactive:180ms cubic-bezier(.16,1,.3,1);
+  --shadow-sm:0 1px 2px oklch(.2 .01 150 / .07);
+  --shadow-md:0 4px 14px oklch(.2 .01 150 / .09);
+  --shadow-lg:0 14px 34px oklch(.2 .01 150 / .14);
+  --font-display:'Cabinet Grotesk','Georgia',serif;
+  --font-body:'General Sans','Helvetica Neue',sans-serif;
+  --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);
+  --text-sm:clamp(.875rem,.8rem + .3vw,1rem);
+  --text-base:clamp(1rem,.96rem + .2vw,1.0625rem);
+  --text-lg:clamp(1.125rem,1rem + .6vw,1.375rem);
+  --text-xl:clamp(1.4rem,1.15rem + 1vw,1.9rem);
+  --text-2xl:clamp(1.8rem,1.2rem + 2vw,2.6rem);
+}
+[data-theme="dark"] {
+  --color-bg:#141715; --color-surface:#1a1e1b; --color-surface-2:#1f231f;
+  --color-surface-offset:#20241f; --color-surface-offset-2:#272b26;
+  --color-divider:#2b2f2a; --color-border:#383d36;
+  --color-text:#dfe1dc; --color-text-muted:#9a9e95; --color-text-faint:#6b6f66;
+  --color-text-inverse:#171a16;
+  --color-primary:#4fb3a6; --color-primary-hover:#2f9689; --color-primary-active:#237a70;
+  --color-primary-highlight:#213330;
+  --color-success:#7fbf70; --color-success-highlight:#243325;
+  --color-warning:#dd9a4f; --color-warning-highlight:#3a2d1c;
+  --color-error:#e08080; --color-error-highlight:#3a2323;
+  --shadow-sm:0 1px 2px oklch(0 0 0/.3); --shadow-md:0 4px 14px oklch(0 0 0/.35); --shadow-lg:0 14px 34px oklch(0 0 0/.45);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:none;text-size-adjust:none;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;}
+body{min-height:100dvh;line-height:1.6;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);}
+img,svg{display:block;max-width:100%;}
+h1,h2,h3{font-family:var(--font-display);line-height:1.1;text-wrap:balance;}
+button,input,select,textarea{font:inherit;color:inherit;}
+:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm);}
+button{cursor:pointer;background:none;border:none;}
+
+.app{max-width:880px;margin-inline:auto;padding:1rem 1rem 3rem;}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:1rem;position:sticky;top:0;background:color-mix(in oklab, var(--color-bg) 88%, transparent);backdrop-filter:blur(8px);z-index:20;border-bottom:1px solid var(--color-divider);}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:var(--text-sm);}
+.brand svg{width:26px;height:26px;color:var(--color-primary);}
+.theme-toggle{width:38px;height:38px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;background:var(--color-surface-offset);}
+.theme-toggle svg{width:18px;height:18px;color:var(--color-text-muted);}
+
+.progress-wrap{padding:.75rem 1rem 0;}
+.progress-track{height:6px;border-radius:var(--radius-full);background:var(--color-surface-offset);overflow:hidden;}
+.progress-fill{height:100%;background:var(--color-primary);border-radius:var(--radius-full);transition:width 300ms ease;width:0%;}
+.progress-label{font-size:var(--text-xs);color:var(--color-text-muted);margin-top:.4rem;display:flex;justify-content:space-between;}
+
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:1.5rem;box-shadow:var(--shadow-sm);}
+
+.hero h1{font-size:var(--text-2xl);margin-bottom:.6rem;}
+.hero p{color:var(--color-text-muted);max-width:60ch;margin-bottom:1rem;}
+.badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--color-primary-highlight);color:var(--color-primary-active);font-size:var(--text-xs);font-weight:600;padding:.3rem .7rem;border-radius:var(--radius-full);margin-bottom:.75rem;}
+.stat-row{display:flex;gap:.75rem;flex-wrap:wrap;margin:1rem 0;}
+.stat-chip{background:var(--color-surface-offset);border-radius:var(--radius-lg);padding:.6rem .9rem;font-size:var(--text-xs);color:var(--color-text-muted);}
+.stat-chip b{color:var(--color-text);font-family:var(--font-display);font-size:var(--text-sm);display:block;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:var(--radius-md);font-weight:600;font-size:var(--text-sm);min-height:44px;transition:background var(--transition-interactive),transform var(--transition-interactive);}
+.btn-primary{background:var(--color-primary);color:var(--color-text-inverse);}
+.btn-primary:hover{background:var(--color-primary-hover);}
+.btn-primary:active{transform:scale(.98);}
+.btn-ghost{background:var(--color-surface-offset);color:var(--color-text);}
+.btn-ghost:hover{background:var(--color-surface-offset-2);}
+.btn-full{width:100%;}
+.btn:disabled{opacity:.45;cursor:not-allowed;}
+
+.q-block{display:none;}
+.q-block.active{display:block;animation:fadein 260ms ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.q-kicker{font-size:var(--text-xs);color:var(--color-primary);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.5rem;}
+.q-title{font-size:var(--text-lg);margin-bottom:1.1rem;font-family:var(--font-display);}
+.options{display:flex;flex-direction:column;gap:.6rem;}
+.opt{display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);text-align:left;width:100%;background:var(--color-surface-2);min-height:44px;}
+.opt:hover{border-color:var(--color-primary);background:color-mix(in oklab, var(--color-primary) 5%, var(--color-surface-2));}
+.opt.selected{border-color:var(--color-primary);background:var(--color-primary-highlight);}
+.opt .dot{width:18px;height:18px;border-radius:var(--radius-full);border:2px solid var(--color-border);flex-shrink:0;position:relative;}
+.opt.selected .dot{border-color:var(--color-primary);}
+.opt.selected .dot::after{content:'';position:absolute;inset:3px;border-radius:var(--radius-full);background:var(--color-primary);}
+.opt-text{font-size:var(--text-sm);}
+
+.nav-row{display:flex;gap:.75rem;margin-top:1.5rem;}
+
+.results{display:none;}
+.results.active{display:block;animation:fadein 300ms ease;}
+.result-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.25rem 0;}
+@media(min-width:640px){.result-grid{grid-template-columns:repeat(2,1fr);}}
+.metric-card{background:var(--color-surface-offset);border-radius:var(--radius-lg);padding:1.2rem;}
+.metric-card .label{font-size:var(--text-xs);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.03em;font-weight:600;}
+.metric-card .value{font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-primary);margin:.4rem 0 .2rem;font-variant-numeric:tabular-nums;}
+.metric-card .sub{font-size:var(--text-xs);color:var(--color-text-faint);}
+.metric-card .explain{font-size:var(--text-xs);color:var(--color-text-muted);margin-top:.5rem;line-height:1.5;}
+
+/* Readiness score color states */
+.score-high .value{color:var(--color-success);}
+.score-mid .value{color:var(--color-primary);}
+.score-low .value{color:var(--color-error);}
+.score-low{border:1px solid var(--color-error);}
+.score-alert{margin-top:.5rem;font-size:var(--text-xs);font-weight:700;color:var(--color-error);}
+
+.cta-box{margin-top:1.5rem;padding:1.4rem;border-radius:var(--radius-lg);background:linear-gradient(135deg, color-mix(in oklab, var(--color-primary) 10%, var(--color-surface)), var(--color-surface));border:1px solid var(--color-primary-highlight);}
+.cta-box h3{font-size:var(--text-lg);margin-bottom:.4rem;}
+.cta-box p{color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:1rem;}
+.method{margin-top:1.5rem;padding:1rem;border-radius:var(--radius-lg);background:var(--color-surface-offset);}
+.method h3{font-size:var(--text-sm);margin-bottom:.5rem;}
+.method p,.method li{font-size:var(--text-xs);color:var(--color-text-muted);}
+.method ul{padding-left:1.1rem;margin-top:.4rem;}
+footer{text-align:center;color:var(--color-text-faint);font-size:var(--text-xs);margin-top:2rem;}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z"/><path d="M12 8 L12 16 M8 10 L16 14 M16 10 L8 14"/></svg>
+    <span>Copilot Readiness</span>
+  </div>
+  <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label"><span id="progressStep">Step 0 of 13</span><span id="progressTime">~5 min left</span></div>
+</div>
+
+<main class="app">
+  <div id="quizArea">
+    <section class="q-block active" data-q="0">
+      <div class="card hero">
+        <span class="badge">5 min · No login required</span>
+        <h1>Microsoft 365 Copilot Readiness &amp; ROI Assessment</h1>
+        <p>Answer 13 quick questions about your organization to receive an estimate of assisted work hours, the economic value of those hours for your CFO, the recommended Adoption &amp; Change Manager effort, and a free personalized 90-day plan.</p>
+        <div class="stat-row">
+          <div class="stat-chip"><b>13</b>Questions, one per screen</div>
+          <div class="stat-chip"><b>CFO-ready</b>Hours + economic value output</div>
+          <div class="stat-chip"><b>Free</b>Expert review + 90-day plan</div>
+        </div>
+        <button class="btn btn-primary btn-full" id="startBtn">Start Assessment</button>
+      </div>
+    </section>
+
+    <div id="questionsMount"></div>
+
+    <section class="results" id="resultsSection">
+      <div class="card">
+        <span class="badge" id="zoneBadge">Your Readiness Zone</span>
+        <h2 id="zoneTitle" style="font-size:var(--text-xl);margin-bottom:.5rem;"></h2>
+        <p id="zoneDesc" style="color:var(--color-text-muted);margin-bottom:1rem;"></p>
+
+        <div class="result-grid">
+          <div class="metric-card" id="scoreCard">
+            <div class="label">Readiness Score</div>
+            <div class="value" id="metricScore">–</div>
+            <div class="sub">Composite ADKAR + governance readiness score out of 100</div>
+            <div class="score-alert" id="scoreAlert" style="display:none;">Below 60: your organization needs structural fixes (leadership alignment, governance, communication) before scaling licenses.</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">Assisted Work Hours / Year</div>
+            <div class="value" id="metricHours">–</div>
+            <div class="sub">Estimated organization-wide work hours Copilot can assist each year</div>
+            <div class="explain">Calculated from your employee count, industry AI-assistability, share of routine digital tasks, and expected adoption rate.</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">Economic Value / Year</div>
+            <div class="value" id="metricValue">–</div>
+            <div class="sub">Estimated annual value of assisted hours (for your CFO)</div>
+            <div class="explain">Assisted work hours multiplied by your average fully loaded hourly cost. Represents capacity unlocked, not necessarily cash saved.</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">Change Manager Hours</div>
+            <div class="value" id="metricCM">–</div>
+            <div class="sub">Recommended &amp; estimated work hours for an Adoption &amp; Change Manager</div>
+            <div class="explain">The total recommended effort (planning, communications, training, champions program, governance) an Adoption &amp; Change Manager should invest to organize and support your rollout. This is a professional estimate, not a contractual quote.</div>
+          </div>
+        </div>
+
+        <div class="method">
+          <h3>How these numbers are calculated</h3>
+          <ul>
+            <li>Assisted Work Hours / Year = licensed employees x share of routine digital tasks x industry AI-assistability factor x expected adoption rate x annual working hours. Driven by your answers, not a generic benchmark.</li>
+            <li>Economic Value / Year = Assisted Work Hours x your average fully loaded hourly cost. A CFO can read this as annual capacity value unlocked.</li>
+            <li>Change Manager Hours = recommended effort scaled by organization size, your readiness gap, and target rollout speed.</li>
+            <li>Forrester TEI studies (up to 353% ROI for SMBs, ~9 hrs saved/user/month) are used only as an external sanity check, not as the calculation basis.</li>
+          </ul>
+        </div>
+
+        <div class="cta-box">
+          <h3>Get your free expert review + personalized 90-day plan</h3>
+          <p>Click below to open your email app with your results pre-filled, addressed to <strong>george@copilotadoption.uk</strong>. Just hit send.</p>
+          <button class="btn btn-primary btn-full" id="ctaEmailBtn">Email My Results for a Free 90-Day Plan</button>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn btn-ghost btn-full" id="restartBtn">Retake Assessment</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>Built for informational purposes · Not affiliated with Microsoft Corporation</footer>
+
+<script>
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  r.setAttribute('data-theme',d);
+  t.addEventListener('click',()=>{
+    d=d==='dark'?'light':'dark'; r.setAttribute('data-theme',d);
+    t.setAttribute('aria-label','Switch to '+(d==='dark'?'light':'dark')+' mode');
+  });
+})();
+
+const questions = [
+  {key:'industry', kicker:'Organization', title:'Which industry best describes your organization?',
+    type:'choice', options:[
+      {label:'Professional services / Consulting / Legal', value:0.45, tag:'ps'},
+      {label:'Financial services / Insurance', value:0.42, tag:'fin'},
+      {label:'Technology / Software / IT services', value:0.48, tag:'tech'},
+      {label:'Manufacturing / Engineering', value:0.30, tag:'mfg'},
+      {label:'Retail / Consumer goods / Logistics', value:0.32, tag:'retail'},
+      {label:'Healthcare / Pharma / Life sciences', value:0.34, tag:'health'},
+      {label:'Public sector / Education / Non-profit', value:0.36, tag:'public'},
+      {label:'Other / Mixed', value:0.35, tag:'other'}
+    ]},
+  {key:'size', kicker:'Organization', title:'How many employees will receive a Copilot license?',
+    type:'choice', options:[
+      {label:'1 – 25', value:15},
+      {label:'26 – 50', value:38},
+      {label:'51 – 100', value:75},
+      {label:'101 – 250', value:175},
+      {label:'251 – 500', value:375},
+      {label:'501 – 1,000', value:750},
+      {label:'1,001 – 2,500', value:1750},
+      {label:'2,501 – 5,000', value:3750},
+      {label:'5,001 – 10,000', value:7500},
+      {label:'10,001 – 30,000', value:20000},
+      {label:'30,000+', value:35000}
+    ]},
+  {key:'hourlyCost', kicker:'Economics (CFO view)', title:'What is the average fully loaded hourly cost per licensed employee (salary + benefits + overheads)?',
+    type:'choice', options:[
+      {label:'Under GBP 25 / hour', value:20},
+      {label:'GBP 25 – 40 / hour', value:32},
+      {label:'GBP 41 – 60 / hour', value:50},
+      {label:'GBP 61 – 90 / hour', value:75},
+      {label:'Over GBP 90 / hour', value:105},
+      {label:'Prefer not to say (use GBP 40 as default)', value:40}
+    ]},
+  {key:'routineShare', kicker:'Work Profile', title:'On average, what share of a typical workweek do your licensed employees spend on routine digital tasks (email, meetings, documents, reporting, presentations)?',
+    type:'choice', options:[
+      {label:'Less than 25%', value:0.2},
+      {label:'25% – 40%', value:0.32},
+      {label:'40% – 60%', value:0.5},
+      {label:'More than 60%', value:0.7},
+      {label:'Not sure (assume 40%)', value:0.4}
+    ]},
+  {key:'awareness', kicker:'ADKAR · Awareness', title:'How aligned is senior leadership on why you are deploying Copilot?',
+    type:'choice', options:[
+      {label:'Fully aligned, executive sponsor active', value:4},
+      {label:'Mostly aligned, some gaps', value:3},
+      {label:'Limited alignment, not yet communicated', value:2},
+      {label:'No leadership alignment yet', value:1}
+    ]},
+  {key:'desire', kicker:'ADKAR · Desire', title:'How would you describe employee enthusiasm (WIIFM) for using Copilot?',
+    type:'choice', options:[
+      {label:'High, employees are asking for access', value:4},
+      {label:'Moderate, mixed reactions', value:3},
+      {label:'Low, skepticism or fear of job impact', value:2},
+      {label:'Unknown / not surveyed', value:1}
+    ]},
+  {key:'knowledge', kicker:'ADKAR · Knowledge', title:'How much prompt engineering / Copilot training exists today?',
+    type:'choice', options:[
+      {label:'Structured role-based training program', value:4},
+      {label:'Some ad-hoc training / self-serve resources', value:3},
+      {label:'Basic app tour only', value:2},
+      {label:'No training exists', value:1}
+    ]},
+  {key:'ability', kicker:'ADKAR · Ability', title:'How integrated is Copilot (or AI assistance) into daily workflows and SOPs?',
+    type:'choice', options:[
+      {label:'Embedded in SOPs and job descriptions', value:4},
+      {label:'Used occasionally, not standardized', value:3},
+      {label:'Tested in a pilot only', value:2},
+      {label:'Not yet deployed', value:1}
+    ]},
+  {key:'reinforcement', kicker:'ADKAR · Reinforcement', title:'Are AI experimentation and reinvention rewarded (performance reviews, recognition)?',
+    type:'choice', options:[
+      {label:'Yes, formally built into reviews/recognition', value:4},
+      {label:'Informally encouraged', value:3},
+      {label:'Not addressed', value:2},
+      {label:'Not sure', value:1}
+    ]},
+  {key:'governance', kicker:'Technical & Data', title:'Have you completed a data oversharing / Purview sensitivity audit?',
+    type:'choice', options:[
+      {label:'Yes, complete and remediated', value:4},
+      {label:'In progress', value:3},
+      {label:'Planned but not started', value:2},
+      {label:'No', value:1}
+    ]},
+  {key:'council', kicker:'Governance', title:'Do you have an AI Council (CIO, CISO, CHRO, CFO, Legal, BU leaders) in place?',
+    type:'choice', options:[
+      {label:'Yes, meeting regularly', value:4},
+      {label:'Formed, not yet meeting regularly', value:3},
+      {label:'Planned', value:2},
+      {label:'No', value:1}
+    ]},
+  {key:'timeline', kicker:'Rollout Plan', title:'What is your target timeline to reach full enterprise rollout?',
+    type:'choice', options:[
+      {label:'Under 3 months (fast pilot-to-scale)', value:1.4},
+      {label:'3 – 6 months', value:1.15},
+      {label:'6 – 12 months', value:1},
+      {label:'12+ months / not yet planned', value:0.85}
+    ]},
+  {key:'email', kicker:'Almost done', title:'Enter your work email so we can address your report (optional but recommended):',
+    type:'text', placeholder:'you@company.com'}
+];
+
+const answers = {};
+const mount = document.getElementById('questionsMount');
+questions.forEach((q, idx)=>{
+  const block = document.createElement('section');
+  block.className='q-block';
+  block.dataset.q = idx+1;
+  let inner = `<div class="card"><div class="q-kicker">${q.kicker}</div><h2 class="q-title">${q.title}</h2>`;
+  if(q.type==='choice'){
+    inner += `<div class="options" role="radiogroup" aria-label="${q.title}">`;
+    q.options.forEach((o)=>{
+      inner += `<button class="opt" type="button" role="radio" aria-checked="false" data-key="${q.key}" data-value="${o.value}" data-label="${o.label}"><span class="dot"></span><span class="opt-text">${o.label}</span></button>`;
+    });
+    inner += `</div>`;
+  } else if(q.type==='text'){
+    inner += `<input type="email" id="emailInput" placeholder="${q.placeholder}" style="width:100%;padding:.85rem 1rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface-2);font-size:var(--text-sm);min-height:44px;">`;
+  }
+  inner += `<div class="nav-row"><button class="btn btn-ghost" id="back-${idx}">Back</button><button class="btn btn-primary" id="next-${idx}" ${q.type==='choice'?'disabled':''}>Continue</button></div></div>`;
+  block.innerHTML = inner;
+  mount.appendChild(block);
+});
+
+const allBlocks = ()=>Array.from(document.querySelectorAll('.q-block'));
+const totalSteps = questions.length + 1;
+
+function goTo(step){
+  allBlocks().forEach(b=>b.classList.remove('active'));
+  document.getElementById('resultsSection').classList.remove('active');
+  if(step >= totalSteps){
+    document.getElementById('resultsSection').classList.add('active');
+    computeResults();
+    document.getElementById('progressFill').style.width='100%';
+    document.getElementById('progressStep').textContent='Complete';
+    document.getElementById('progressTime').textContent='Results ready';
+    window.scrollTo({top:0,behavior:'smooth'});
+    return;
+  }
+  const block = document.querySelector(`.q-block[data-q="${step}"]`);
+  if(block) block.classList.add('active');
+  const pct = Math.round((step/totalSteps)*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressStep').textContent = `Step ${step} of ${totalSteps-1}`;
+  const minLeft = Math.max(0, Math.ceil((totalSteps-1-step)*0.35));
+  document.getElementById('progressTime').textContent = minLeft>0 ? `~${minLeft} min left` : 'Almost done';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('startBtn').addEventListener('click',()=>goTo(1));
+
+questions.forEach((q, idx)=>{
+  const block = document.querySelector(`.q-block[data-q="${idx+1}"]`);
+  const nextBtn = document.getElementById(`next-${idx}`);
+  const backBtn = document.getElementById(`back-${idx}`);
+  backBtn.addEventListener('click',()=>goTo(idx));
+  nextBtn.addEventListener('click',()=>{
+    if(q.type==='text'){
+      answers[q.key] = document.getElementById('emailInput').value.trim();
+    }
+    goTo(idx+2);
+  });
+  if(q.type==='choice'){
+    block.querySelectorAll('.opt').forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        block.querySelectorAll('.opt').forEach(o=>{o.classList.remove('selected');o.setAttribute('aria-checked','false');});
+        opt.classList.add('selected'); opt.setAttribute('aria-checked','true');
+        answers[q.key] = parseFloat(opt.dataset.value);
+        answers[q.key+'Label'] = opt.dataset.label;
+        nextBtn.disabled = false;
+      });
+    });
+  }
+});
+
+const ANNUAL_WORK_HOURS = 1920; // 40 hrs x 48 weeks
+
+function computeResults(){
+  const adkarKeys = ['awareness','desire','knowledge','ability','reinforcement'];
+  const adkarSum = adkarKeys.reduce((s,k)=>s+(answers[k]||1),0);
+  const adkarMax = adkarKeys.length*4;
+  const govBonus = ((answers.governance||1)+(answers.council||1))/8;
+  const readinessScore = Math.round(((adkarSum/adkarMax)*0.7 + govBonus*0.3)*100);
+
+  let zone, zoneDesc;
+  if(readinessScore>=80){zone='Frontier';zoneDesc='High readiness. Accelerate to champions and scale quickly.';}
+  else if(readinessScore>=60){zone='Emergent';zoneDesc='Solid foundation. Needs structured onboarding to reach scale.';}
+  else if(readinessScore>=40){zone='Stalled';zoneDesc='Trust and communication gaps need addressing before training.';}
+  else if(readinessScore>=25){zone='Unclaimed';zoneDesc='Low knowledge/ability. Training-first intervention required.';}
+  else {zone='Blocked';zoneDesc='Management support and leadership alignment must be fixed first.';}
+
+  const users = answers.size || 750;
+  const industryFactor = answers.industry || 0.35;
+  const routineShare = answers.routineShare || 0.4;
+  const hourlyCost = answers.hourlyCost || 40;
+
+  // Expected adoption rate: driven by readiness, not a fixed benchmark
+  const adoptionRate = Math.min(0.9, 0.25 + (readinessScore/100)*0.65);
+
+  // Assisted work hours: user-input-driven model
+  const assistedHours = Math.round(users * ANNUAL_WORK_HOURS * routineShare * industryFactor * adoptionRate);
+  const economicValue = Math.round(assistedHours * hourlyCost);
+
+  // Change Manager recommended hours: scaled by size, readiness gap, rollout speed
+  const speedFactor = answers.timeline || 1;
+  const readinessGapFactor = 1 + ((100-readinessScore)/100);
+  let baseHoursPer100 = 18;
+  if(users <= 100) baseHoursPer100 = 60;       // small orgs: fixed overhead dominates
+  else if(users <= 500) baseHoursPer100 = 32;
+  else if(users <= 2500) baseHoursPer100 = 22;
+  const cmHours = Math.max(40, Math.round((users/100) * baseHoursPer100 * readinessGapFactor * speedFactor));
+
+  document.getElementById('zoneBadge').textContent = 'Readiness Zone: '+zone;
+  document.getElementById('zoneTitle').textContent = zone+' Organization';
+  document.getElementById('zoneDesc').textContent = zoneDesc;
+  document.getElementById('metricScore').textContent = readinessScore+' / 100';
+  document.getElementById('metricHours').textContent = assistedHours.toLocaleString()+' hrs/yr';
+  document.getElementById('metricValue').textContent = 'GBP '+economicValue.toLocaleString()+' / yr';
+  document.getElementById('metricCM').textContent = cmHours.toLocaleString()+' hrs';
+
+  // Readiness score color logic: below 60 -> red warning
+  const scoreCard = document.getElementById('scoreCard');
+  scoreCard.classList.remove('score-high','score-mid','score-low');
+  if(readinessScore < 60){
+    scoreCard.classList.add('score-low');
+    document.getElementById('scoreAlert').style.display='block';
+  } else if(readinessScore < 80){
+    scoreCard.classList.add('score-mid');
+    document.getElementById('scoreAlert').style.display='none';
+  } else {
+    scoreCard.classList.add('score-high');
+    document.getElementById('scoreAlert').style.display='none';
+  }
+
+  window.__results = {zone, readinessScore, cmHours, assistedHours, economicValue, users, adoptionRate, hourlyCost, routineShare, industryFactor,
+    industryLabel: answers.industryLabel||'N/A', sizeLabel: answers.sizeLabel||'N/A'};
+}
+
+document.getElementById('ctaEmailBtn').addEventListener('click',()=>{
+  const r = window.__results || {};
+  const subject = encodeURIComponent('Free Copilot Readiness Review Request - '+ (r.zone||'') +' Zone');
+  const bodyLines = [
+    'Hello,',
+    '',
+    'I completed the Microsoft 365 Copilot Readiness & ROI Assessment and would like a free expert review and a personalized 90-day plan.',
+    '',
+    '--- MY RESULTS ---',
+    'Industry: ' + (r.industryLabel||'N/A'),
+    'Licensed employees: ' + (r.sizeLabel||'N/A'),
+    'Readiness Zone: ' + (r.zone||'N/A'),
+    'Readiness Score: ' + (r.readinessScore!=null? r.readinessScore+'/100':'N/A'),
+    'Estimated Assisted Work Hours per Year: ' + (r.assistedHours!=null? r.assistedHours.toLocaleString()+' hrs/yr':'N/A'),
+    'Estimated Economic Value per Year: ' + (r.economicValue!=null? 'GBP '+r.economicValue.toLocaleString():'N/A'),
+    'Recommended Change Manager Hours: ' + (r.cmHours!=null? r.cmHours.toLocaleString()+' hrs':'N/A'),
+    'Expected adoption rate assumption: ' + (r.adoptionRate? Math.round(r.adoptionRate*100)+'%':'N/A'),
+    '',
+    'Please reach out with next steps.',
+    '',
+    'Thank you.'
+  ];
+  const body = encodeURIComponent(bodyLines.join('\n'));
+  window.location.href = `mailto:george@copilotadoption.uk?subject=${subject}&body=${body}`;
+});
+
+document.getElementById('restartBtn').addEventListener('click',()=>{
+  Object.keys(answers).forEach(k=>delete answers[k]);
+  document.querySelectorAll('.opt.selected').forEach(o=>{o.classList.remove('selected');o.setAttribute('aria-checked','false');});
+  document.querySelectorAll('[id^="next-"]').forEach((b,i)=>{ if(questions[i] && questions[i].type==='choice') b.disabled = true; });
+  goTo(0);
+});
+
+goTo(0);
+</script>
+</body>
+</html>
