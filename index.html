@@ -65,7 +65,7 @@
   "description": "Enterprise Microsoft 365 Copilot adoption consulting for Microsoft Partners, MSPs, CSPs and direct enterprise clients. ADKAR-based change management, role-specific enablement, documented ROI in 39 days, 30,000 plus seat rollouts.",
   "url": "https://copilotadoption.uk/",
   "image": "https://copilotadoption.uk/og-image.png",
-  "priceRange": "€€€",
+  "priceRange": "\u20ac\u20ac\u20ac",
   "founder": {"@type": "Person", "name": "Giorgio Tsoupis"},
   "areaServed": [
     {"@type": "Country", "name": "United Kingdom"},
@@ -101,7 +101,7 @@
 <style>
 :root{
   --bg:#0A0E1A;--bg-soft:#111627;--cyan:#00D4FF;--purple:#6B21E8;--blue:#2563EB;
-  --white:#FFFFFF;--grey:#CBD5E1;--grey-dim:#8A97AE;--green:#22C55E;
+  --white:#FFFFFF;--grey:#CBD5E1;--grey-dim:#8A97AE;--green:#22C55E;--amber:#F5A623;
   --card:rgba(255,255,255,0.04);--card-border:rgba(255,255,255,0.08);
   --radius:16px;--gradient:linear-gradient(135deg,#6B21E8 0%,#2563EB 100%);
   --font-body:"Segoe UI Variable","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Arial",sans-serif;
@@ -121,6 +121,26 @@ nav .container{display:flex;justify-content:space-between;align-items:center;gap
 .logo span{color:var(--cyan)}
 .nav-cta{background:var(--gradient);color:var(--white);padding:10px 20px;border-radius:999px;font-weight:600;font-size:14px;font-family:var(--font-body);transition:transform .2s;display:inline-block}
 .nav-cta:hover{transform:translateY(-1px)}
+.nav-links{display:flex;gap:22px;align-items:center;margin:0 auto}
+.nav-links a{color:var(--grey);font-size:14px;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--cyan)}
+@media(max-width:920px){.nav-links{display:none}}
+.hero-trust{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0 0 44px}
+.trust-chip{padding:9px 16px;border-radius:999px;background:var(--card);border:1px solid var(--card-border);color:var(--grey);font-size:13px;font-weight:600}
+.trust-chip b{color:var(--cyan);font-weight:700;margin-right:4px}
+a.card{display:flex;flex-direction:column;text-decoration:none}
+a.card .resource-link{margin-top:14px}
+.concept-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+.concept-chip{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px 20px;transition:border-color .25s,transform .25s}
+.concept-chip:hover{border-color:rgba(0,212,255,0.4);transform:translateY(-3px)}
+.concept-ico{font-size:24px;line-height:1;flex-shrink:0}
+.concept-chip strong{display:block;color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;margin-bottom:3px}
+.concept-chip span{color:var(--grey-dim);font-size:13px;line-height:1.45}
+.licence-figure{margin:36px auto 0;max-width:760px}
+.licence-figure img{width:100%;height:auto;display:block;border-radius:var(--radius);border:1px solid var(--card-border)}
+.case-figure{margin:0 auto;max-width:1020px}
+.case-figure img{width:100%;height:auto;display:block;border-radius:var(--radius);border:1px solid var(--card-border);box-shadow:0 16px 48px rgba(0,0,0,0.45)}
+.case-figcaption{color:var(--grey-dim);font-size:13px;margin-top:14px;text-align:center;font-style:italic}
 .hero{padding:80px 0 60px;text-align:center}
 .badge{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.25);color:var(--cyan);font-size:13px;font-weight:500;margin-bottom:24px;letter-spacing:0.3px}
 h1{font-family:var(--font-display);font-size:clamp(36px,6vw,64px);font-weight:800;color:var(--white);line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px}
@@ -151,10 +171,36 @@ section{padding:80px 0}
 .partner-benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:32px;list-style:none}
 .partner-benefits li{display:flex;align-items:flex-start;gap:10px;color:var(--grey);font-size:15px}
 .check{color:var(--green);font-weight:700;font-size:18px;flex-shrink:0;line-height:1.4}
+/* CFO financial exposure callout */
+.cfo-callout{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:1080px;margin:0 auto 40px}
+.cfo-callout-item{background:linear-gradient(135deg,rgba(245,166,35,0.10) 0%,rgba(239,68,68,0.08) 100%);border:1px solid rgba(245,166,35,0.30);border-left:4px solid var(--amber);border-radius:var(--radius);padding:24px 22px}
+.cfo-callout-item strong{display:block;font-family:var(--font-display);font-size:clamp(28px,3.5vw,36px);font-weight:800;color:var(--amber);line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums}
+.cfo-callout-item span{color:var(--grey);font-size:14px;line-height:1.5}
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
 .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;background:var(--card-border);border-radius:var(--radius);overflow:hidden;border:1px solid var(--card-border)}
-.metric{background:var(--bg-soft);padding:32px 20px;text-align:center}
+.metric{background:var(--bg-soft);padding:32px 20px;text-align:center;transition:background .3s}
+.metric:hover{background:#161d33}
 .metric .big{font-family:var(--font-display);font-size:clamp(30px,4vw,42px);font-weight:800;color:var(--cyan);line-height:1;font-variant-numeric:tabular-nums;margin-bottom:8px}
 .metric .desc{color:var(--grey-dim);font-size:13px;text-transform:uppercase;letter-spacing:0.5px}
+.metric .big.zero{color:var(--green)}
+/* Animated adoption chart */
+.adoption-chart{max-width:1080px;margin:44px auto 0;background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px 24px 20px}
+.adoption-title{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:0.6px;font-weight:600;margin-bottom:22px;text-align:center}
+.adoption-bars{display:flex;align-items:flex-end;gap:10px;height:230px}
+.adoption-bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;position:relative}
+.ab-val{font-family:var(--font-display);font-weight:800;color:var(--white);font-size:clamp(11px,1.6vw,15px);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.ab-fill{width:100%;max-width:52px;height:0;background:linear-gradient(180deg,var(--cyan) 0%,var(--purple) 100%);border-radius:6px 6px 0 0;transition:height 1.2s cubic-bezier(.22,1,.36,1);box-shadow:0 0 18px rgba(0,212,255,0.25)}
+.adoption-chart.visible .ab-fill{height:var(--h)}
+.ab-month{color:var(--grey-dim);font-size:11px;letter-spacing:0.5px;margin-top:8px}
+/* CFO business impact */
+.cfo-impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:1080px;margin:36px auto 0}
+.cfo-impact{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:26px 22px;text-align:center;transition:border-color .25s,transform .25s}
+.cfo-impact:hover{border-color:rgba(0,212,255,0.4);transform:translateY(-3px)}
+.cfo-impact strong{display:block;font-family:var(--font-display);font-size:clamp(26px,3.5vw,34px);font-weight:800;color:var(--cyan);line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums}
+.cfo-impact span{color:var(--grey);font-size:14px;line-height:1.5}
+.audit-note{text-align:center;color:var(--grey-dim);font-size:13px;margin-top:26px;font-style:italic}
 .story-wrap{max-width:820px;margin:0 auto;text-align:center}
 .story-wrap p{font-size:17px;line-height:1.75;color:var(--grey);margin-bottom:22px}
 .story-embed{display:flex;justify-content:center;margin-top:36px}
@@ -208,11 +254,12 @@ section{padding:80px 0}
 .faq-item summary{padding:22px 26px;cursor:pointer;font-family:var(--font-display);font-weight:700;color:var(--white);font-size:16px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .faq-item summary::-webkit-details-marker{display:none}
 .faq-item summary::after{content:"+";color:var(--cyan);font-size:24px;font-weight:400;line-height:1;transition:transform .25s}
-.faq-item[open] summary::after{content:"−"}
+.faq-item[open] summary::after{content:"\2212"}
 .faq-item .faq-answer{padding:0 26px 22px;color:var(--grey);font-size:15px;line-height:1.65}
 .contact-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:780px;margin:0 auto}
 .contact-card{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px 20px;text-align:center;color:var(--white);transition:border-color .25s,transform .25s;display:block;font-family:var(--font-body)}
 .contact-card:hover{border-color:var(--cyan);transform:translateY(-3px)}
+.contact-card.highlight{background:linear-gradient(135deg,rgba(0,212,255,0.12) 0%,rgba(107,33,232,0.15) 100%);border-color:rgba(0,212,255,0.4)}
 .contact-card .ico{font-size:28px;margin-bottom:12px;display:block}
 .contact-card .title{font-weight:700;font-size:16px;color:var(--white);margin-bottom:4px;font-family:var(--font-display)}
 .contact-card .sub{color:var(--grey-dim);font-size:13px}
@@ -227,6 +274,62 @@ footer{padding:40px 0 32px;border-top:1px solid var(--card-border);text-align:ce
   .container{padding:0 18px}
   .proof-strip{grid-template-columns:repeat(2,1fr);padding:20px}
   .partner-block,.demand-block{padding:28px 22px}
+  .adoption-bars{height:180px;gap:5px}
+  .ab-fill{max-width:30px}
+}
+/* ===== A2 · Licences Are Not Adoption (Decay Curve) ===== */
+.a2-grid{display:grid;grid-template-columns:300px 1fr;gap:18px;align-items:stretch;max-width:1080px;margin:0 auto}
+.a2-rail{display:flex;flex-direction:column;gap:14px}
+.a2-stat{background:var(--card);border:1px solid var(--card-border);border-left:4px solid;border-radius:var(--radius);padding:20px 22px;transition:border-color .25s,transform .25s}
+.a2-stat:hover{transform:translateY(-3px)}
+.a2-stat b{display:block;font-family:var(--font-display);font-size:34px;font-weight:800;line-height:1;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.a2-stat span{font-size:13.5px;color:var(--grey);line-height:1.45}
+.a2-chart{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column}
+.a2-chart h4{color:var(--white);font-family:var(--font-display);font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
+.a2-chart .sub{color:var(--grey-dim);font-size:13.5px;margin:4px 0 10px}
+.a2-svg{width:100%;flex-grow:1;min-height:230px}
+.a2-foot{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1080px;margin:16px auto 0}
+.a2-fcard{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:16px 18px;transition:border-color .25s,transform .25s}
+.a2-fcard:hover{border-color:rgba(0,212,255,0.4);transform:translateY(-3px)}
+.a2-fcard .i{font-size:20px}
+.a2-fcard strong{display:block;color:var(--white);font-size:14px;font-family:var(--font-display);margin:6px 0 4px}
+.a2-fcard p{font-size:12.5px;color:var(--grey-dim);line-height:1.4}
+@media(max-width:760px){.a2-grid{grid-template-columns:1fr}.a2-foot{grid-template-columns:repeat(2,1fr)}}
+/* ===== B1 · Copilot ROI Case Study (Growth Arc) ===== */
+.b1-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;max-width:1080px;margin:0 auto}
+.b1-arc{position:relative;background:linear-gradient(160deg,#0d1424,#0a0e1a);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;overflow:hidden;min-height:440px}
+.b1-arc svg{position:absolute;inset:0;width:100%;height:100%}
+.b1-node{position:absolute;background:rgba(10,14,26,0.85);border:1px solid rgba(0,212,255,0.3);border-radius:12px;padding:12px 14px;backdrop-filter:blur(4px);z-index:2}
+.b1-node .k{font-family:var(--font-display);font-weight:800;color:#fff;font-size:22px;line-height:1;font-variant-numeric:tabular-nums}
+.b1-node .l{color:var(--cyan);font-size:11px;text-transform:uppercase;letter-spacing:0.5px}
+.b1-node small{display:block;color:var(--grey-dim);font-size:11px;margin-top:4px}
+.b1-results{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:22px}
+.b1-results h4{text-align:center;color:var(--cyan);font-family:var(--font-display);letter-spacing:0.6px;font-size:14px;text-transform:uppercase;margin-bottom:16px}
+.b1-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--card-border)}
+.b1-row:last-child{border-bottom:none}
+.b1-row .ic{width:34px;height:34px;border-radius:9px;background:rgba(0,212,255,0.1);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.b1-row .big{font-family:var(--font-display);font-weight:800;color:#fff;font-size:22px;min-width:78px;font-variant-numeric:tabular-nums}
+.b1-row .big small{font-size:12px;color:var(--grey-dim);font-weight:600}
+.b1-row .big.zero{color:var(--green)}
+.b1-row .lab{font-size:13.5px;color:var(--grey)}
+.b1-impact{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px;margin:16px auto 0}
+.b1-imp{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:18px;text-align:center;transition:border-color .25s,transform .25s}
+.b1-imp:hover{border-color:rgba(0,212,255,0.4);transform:translateY(-3px)}
+.b1-imp b{font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--cyan);font-variant-numeric:tabular-nums}
+.b1-imp span{display:block;font-size:12.5px;color:var(--grey);margin-top:4px}
+@media(max-width:820px){.b1-wrap{grid-template-columns:1fr}.b1-impact{grid-template-columns:1fr}}
+/* ===== Scroll-draw + fade primitives (hook into .reveal.visible) ===== */
+.draw-path{stroke-dasharray:var(--len,900);stroke-dashoffset:var(--len,900);transition:stroke-dashoffset 1.8s cubic-bezier(.22,1,.36,1)}
+.reveal.visible .draw-path{stroke-dashoffset:0}
+.fade-el{opacity:0;transition:opacity .7s ease}
+.reveal.visible .fade-el{opacity:1}
+.pop{opacity:0;transform:translateY(10px) scale(.96);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible .pop{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .ab-fill{transition:none}
+  .draw-path{stroke-dashoffset:0;transition:none}
+  .fade-el,.pop{opacity:1;transform:none;transition:none}
 }
 </style>
 </head>
@@ -234,35 +337,85 @@ footer{padding:40px 0 32px;border-top:1px solid var(--card-border);text-align:ce
 <nav>
   <div class="container">
     <button class="logo" data-scroll="top" aria-label="Scroll to top">copilotadoption<span>.uk</span></button>
-    <a class="nav-cta" data-url="topmate">Book a Call</a>
+    <div class="nav-links" aria-label="Quick navigation">
+      <a href="#problem">Problem</a>
+      <a href="#offer">Services</a>
+      <a href="#partners">Partners</a>
+      <a href="#results">Case Study</a>
+      <a href="#resources">Resources</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" data-url="assessment">AI Readiness Assessment</a>
   </div>
 </nav>
 <header class="hero" id="top">
   <div class="container">
     <span class="badge">Enterprise · Augmented Intelligence at Work</span>
-    <h1>Microsoft 365 Copilot <span class="accent">Adoption Architect</span></h1>
-    <p class="subhead">Microsoft 365 Copilot Program Manager working primarily through Microsoft Partners, MSPs and CSPs, with select direct engagements for select enterprises. ADKAR-based change management, role-specific enablement.</p>
+    <h1>Every unused Copilot licence is a cost. <span class="accent">Make it a return.</span></h1>
+    <p class="subhead">Turn your Microsoft 365 Copilot investment into 10–20% productivity gains in 90 days.</p>
     <div class="cta-row">
-      <a class="btn-primary" data-url="topmate">Discover Portfolio</a>
-      <a class="btn-secondary" data-url="linkedin">Connect on LinkedIn</a>
+      <a class="btn-primary" data-url="assessment">AI Readiness Self Assessment (5 minutes)</a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-chip"><b>✓</b>Former Microsoft Copilot PM</span>
+      <span class="trust-chip"><b>✓</b>Low Risk Enterprise Rollouts</span>
     </div>
     <div class="proof-strip">
+      <div class="stat"><div class="num">1M+</div><div class="label">Copilot Seats Deployed</div></div>
       <div class="stat"><div class="num">98%</div><div class="label">Active Usage</div></div>
-      <div class="stat"><div class="num">39</div><div class="label">Days to ROI</div></div>
-      <div class="stat"><div class="num">30,000+</div><div class="label">Seats Enabled</div></div>
-      <div class="stat"><div class="num">1.1M+</div><div class="label">Licenses Influenced</div></div>
+      <div class="stat"><div class="num">UK &amp; EU</div><div class="label">Clients Served</div></div>
     </div>
   </div>
 </header>
 <section id="problem">
   <div class="container">
     <h2 class="section-title">Licences Are Not Adoption</h2>
-    <p class="section-intro"><strong>70%</strong> of Fortune 500 companies already bought Microsoft 365 Copilot, so the herd has moved. But <strong>84%</strong> of them are still stuck below full production, quietly bleeding license spend with nothing to show finance. Here is exactly where rollouts stall, and how to make sure yours does not.</p>
-    <div class="grid-4">
-      <div class="card"><div class="card-icon">📉</div><h3>Vanishing Usage</h3><p>Licences that cost real money go quiet by week two. No habit loop, no curiosity left, just a flatlined telemetry dashboard finance will eventually ask about.</p></div>
-      <div class="card"><div class="card-icon">🎯</div><h3>Training That Does Not Land</h3><p>A one size demo teaches nothing your team keeps. Role specific prompts and workflows are what actually change daily behaviour, everything else is a wasted session.</p></div>
-      <div class="card"><div class="card-icon">🛡️</div><h3>Risk Hiding in Plain Sight</h3><p>Permission sprawl and blurred Web vs Work boundaries are not a future problem, they are a compliance incident waiting for a trigger, often before the pilot even scales.</p></div>
-      <div class="card"><div class="card-icon">📊</div><h3>The Story Finance Will Not Buy</h3><p>Finance does not take usage on faith. Without audited hours saved and renewal signals in hand, the business case can quietly collapse at year end, and the licence spend goes with it.</p></div>
+    <p class="section-intro"><strong>70%</strong> of Fortune 500 companies already bought Microsoft 365 Copilot. But <strong>84%</strong> are still stuck below full production, quietly bleeding licence spend with nothing to show finance.</p>
+    <div class="a2-grid reveal">
+      <div class="a2-rail">
+        <div class="a2-stat" style="border-left-color:#F5A623"><b style="color:#F5A623"><span class="countup" data-prefix="$" data-target="108" data-suffix="K">$0K</span></b><span>Idle every year at 40% usage.</span></div>
+        <div class="a2-stat" style="border-left-color:#22C55E"><b style="color:#22C55E"><span class="countup" data-prefix="$" data-target="374" data-suffix="K">$0K</span></b><span>3-year exposure with churn decay.</span></div>
+        <div class="a2-stat" style="border-left-color:#F04A6E"><b style="color:#F04A6E">#1</b><span>Predictor of non-renewal: dormant seats.</span></div>
+      </div>
+      <div class="a2-chart">
+        <h4><span style="color:#F04A6E">↘</span> Vanishing Usage</h4>
+        <div class="sub">Active seats collapse by week two — the flatline finance eventually asks about.</div>
+        <svg class="a2-svg" viewBox="0 0 620 240" preserveAspectRatio="none" role="img" aria-label="Line chart showing active Copilot seats falling from 92 percent in week one to 13 percent by week eight">
+          <defs>
+            <linearGradient id="a2fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F04A6E" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#F04A6E" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g stroke="#1c2438" stroke-width="1">
+            <line x1="40" y1="30" x2="600" y2="30"/><line x1="40" y1="90" x2="600" y2="90"/>
+            <line x1="40" y1="150" x2="600" y2="150"/><line x1="40" y1="200" x2="600" y2="200"/>
+          </g>
+          <path class="fade-el" style="transition-delay:.9s" d="M55,40 C130,55 150,120 190,150 C240,185 300,195 360,200 C420,203 480,205 585,207 L585,210 L55,210 Z" fill="url(#a2fill)"/>
+          <path class="draw-path" style="--len:900" d="M55,40 C130,55 150,120 190,150 C240,185 300,195 360,200 C420,203 480,205 585,207" fill="none" stroke="#F04A6E" stroke-width="3" stroke-linecap="round"/>
+          <g fill="#F04A6E">
+            <circle class="fade-el" style="transition-delay:.4s" cx="55" cy="40" r="4.5"/>
+            <circle class="fade-el" style="transition-delay:.7s" cx="190" cy="150" r="4"/>
+            <circle class="fade-el" style="transition-delay:1s" cx="285" cy="188" r="4"/>
+            <circle class="fade-el" style="transition-delay:1.2s" cx="360" cy="200" r="4"/>
+            <circle class="fade-el" style="transition-delay:1.4s" cx="440" cy="204" r="4"/>
+            <circle class="fade-el" style="transition-delay:1.6s" cx="510" cy="206" r="4"/>
+            <circle class="fade-el" style="transition-delay:1.8s" cx="585" cy="207" r="4.5"/>
+          </g>
+          <text class="fade-el" style="transition-delay:.3s" x="55" y="28" fill="#fff" font-size="15" font-weight="800" font-family="Segoe UI">92%</text>
+          <text class="fade-el" style="transition-delay:1.9s" x="560" y="198" fill="#F04A6E" font-size="15" font-weight="800" font-family="Segoe UI">13%</text>
+          <g fill="#8A97AE" font-size="11" font-family="Segoe UI" text-anchor="middle">
+            <text x="55" y="228">W1</text><text x="130" y="228">W2</text><text x="205" y="228">W3</text><text x="285" y="228">W4</text>
+            <text x="360" y="228">W5</text><text x="435" y="228">W6</text><text x="510" y="228">W7</text><text x="585" y="228">W8</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="a2-foot reveal">
+      <div class="a2-fcard"><div class="i">📉</div><strong>Vanishing Usage</strong><p>Licences go quiet by week two.</p></div>
+      <div class="a2-fcard"><div class="i">🎯</div><strong>Training That Misses</strong><p>One-size demos change nothing.</p></div>
+      <div class="a2-fcard"><div class="i">🛡️</div><strong>Risk in Plain Sight</strong><p>Permission sprawl, Web vs Work.</p></div>
+      <div class="a2-fcard"><div class="i">📊</div><strong>No Finance Story</strong><p>No audited hours, no case.</p></div>
     </div>
   </div>
 </section>
@@ -272,8 +425,8 @@ footer{padding:40px 0 32px;border-top:1px solid var(--card-border);text-align:ce
     <p class="section-intro">Four service tracks, all built around the ADKAR change management framework and Kotter 8 Step model. Delivered inside your engagement, under your brand where needed.</p>
     <div class="grid-4">
       <div class="card"><div class="card-icon">🚀</div><h3>Copilot Adoption Accelerator</h3><p>30 day sprint to move Microsoft 365 Copilot usage from pilot to production. Role based enablement, prompt libraries, adoption telemetry.</p></div>
-      <div class="card"><div class="card-icon">🎤</div><h3>Executive Briefings and Keynotes</h3><p>Board level Copilot sessions and workshops. English, Italian, Greek or Polish. Data backed, not vendor slideware.</p></div>
-      <div class="card"><div class="card-icon">🔍</div><h3>Adoption Readiness Assessment</h3><p>Pre deployment audit of licences, security posture, use cases and champions network. Delivered in around 10 working days.</p></div>
+      <a class="card" data-url="trainer"><div class="card-icon">🎤</div><h3>Executive Briefings and Keynotes</h3><p>Board level Copilot sessions and workshops. English, Italian, Greek or Polish. Data backed, not vendor slideware.</p><span class="resource-link">Book a session →</span></a>
+      <a class="card" data-url="assessment"><div class="card-icon">🔍</div><h3>Adoption Readiness Assessment</h3><p>Pre deployment audit of licences, security posture, use cases and champions network. Delivered in around 10 working days.</p><span class="resource-link">Start the assessment →</span></a>
       <div class="card"><div class="card-icon">🧠</div><h3>Custom Deployment Program</h3><p>Ongoing strategic and operational support for your product team. ADKAR playbooks, communication kits, adoption dashboards.</p></div>
     </div>
   </div>
@@ -301,32 +454,49 @@ footer{padding:40px 0 32px;border-top:1px solid var(--card-border);text-align:ce
 </section>
 <section id="results" style="background:var(--bg-soft)">
   <div class="container">
+    <div style="text-align:center"><span class="badge">For the CFO · Outcomes, Not Opinions</span></div>
     <h2 class="section-title">Copilot ROI Enterprise Case Study</h2>
-    <p class="section-intro">Audited results from a 1,000 expanded to 30,000 plus seat European enterprise Microsoft 365 Copilot rollout. Your mileage will vary, but the direction of travel tends to hold.</p>
-    <div class="results-grid">
-      <div class="metric"><div class="big">98%</div><div class="desc">Active Weekly Usage</div></div>
-      <div class="metric"><div class="big">39</div><div class="desc">Days to First ROI</div></div>
-      <div class="metric"><div class="big">8h</div><div class="desc">Saved per User per Month</div></div>
-      <div class="metric"><div class="big">224k+</div><div class="desc">Copilot Actions</div></div>
-      <div class="metric"><div class="big">99%</div><div class="desc">Licence Renewal</div></div>
-      <div class="metric"><div class="big">4.5/5</div><div class="desc">Training Score</div></div>
-    </div>
-  </div>
-</section>
-<section id="story">
-  <div class="container">
-    <div class="story-wrap">
-      <span class="badge">Behind the Numbers</span>
-      <h2 class="section-title">Resilience Behind the 30,000 License Milestone</h2>
-      <p>Before this rollout closed, the year unraveled in a very unexpected way. A round of layoffs. Days later, a hospital admission for SSHL, the kind that arrives without warning. Weeks of quiet, deliberate recovery followed.</p>
-      <p>Exactly one year later eventually closed on the largest Microsoft 365 Copilot deployment of career to date. Enterprise adoption work is rarely a straight line, and sometimes the leaders you want inside your rollout are the ones who have already been through the storm.</p>
-      <div class="story-embed">
-        <div data-linkedin-post="7338551614292602880" data-linkedin-type="share" data-height="691"></div>
+    <p class="section-intro">Audited results from a 2,200 expanded to 30,000+ seat European enterprise Microsoft 365 Copilot rollout, documented in an independent December 2025 deployment audit. Every figure ties back to spend, retention and productivity a finance team can defend.</p>
+    <div class="b1-wrap reveal">
+      <div class="b1-arc">
+        <svg viewBox="0 0 560 440" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Growth curve rising from 2,200 licences at the starting point to 30,000 board-approved licences">
+          <defs>
+            <linearGradient id="arcg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#00D4FF"/></linearGradient>
+            <linearGradient id="arcfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00D4FF" stop-opacity="0.18"/><stop offset="1" stop-color="#00D4FF" stop-opacity="0"/></linearGradient>
+          </defs>
+          <path class="fade-el" style="transition-delay:1s" d="M40,380 C200,370 320,315 400,210 C450,148 470,95 500,55 L500,410 L40,410 Z" fill="url(#arcfill)"/>
+          <path class="draw-path" style="--len:820" d="M40,380 C200,370 320,315 400,210 C450,148 470,95 500,55" fill="none" stroke="url(#arcg)" stroke-width="4" stroke-linecap="round"/>
+          <polygon class="fade-el" style="transition-delay:1.7s" points="500,46 491,66 512,62" fill="#00D4FF"/>
+          <circle class="fade-el" style="transition-delay:.3s" cx="40" cy="380" r="7" fill="#0A0E1A" stroke="#00D4FF" stroke-width="3"/>
+          <circle class="fade-el" style="transition-delay:1s" cx="300" cy="322" r="7" fill="#0A0E1A" stroke="#00D4FF" stroke-width="3"/>
+          <circle class="fade-el" style="transition-delay:1.7s" cx="500" cy="55" r="8" fill="#00D4FF"/>
+        </svg>
+        <div class="b1-node pop" style="left:20px;bottom:24px;transition-delay:.2s"><div class="l">Starting point</div><div class="k"><span class="countup" data-target="2200" data-format="comma">0</span></div><small>Sub-40% adoption · low habit</small></div>
+        <div class="b1-node pop" style="left:34%;top:32%;transition-delay:.9s"><div class="l">Month 6</div><div class="k"><span class="countup" data-target="84" data-suffix="%">0%</span></div><small>Active weekly usage</small></div>
+        <div class="b1-node pop" style="right:18px;top:18px;transition-delay:1.5s"><div class="l">Outcome · Board approved</div><div class="k"><span class="countup" data-target="30000" data-format="comma">0</span></div><small>Licence expansion · Dec 2025</small></div>
+      </div>
+      <div class="b1-results">
+        <h4>Key Results</h4>
+        <div class="b1-row"><div class="ic">👥</div><div class="big"><span class="countup" data-target="98" data-suffix="%">0%</span></div><div class="lab">Active weekly usage</div></div>
+        <div class="b1-row"><div class="ic">⏱️</div><div class="big"><span class="countup" data-target="62" data-suffix="%">0%</span></div><div class="lab">Users on Copilot daily</div></div>
+        <div class="b1-row"><div class="ic">🎯</div><div class="big"><span class="countup" data-target="39">0</span><small> d</small></div><div class="lab">Average ROI realisation</div></div>
+        <div class="b1-row"><div class="ic">📈</div><div class="big"><span class="countup" data-target="91" data-suffix="%">0%</span></div><div class="lab">Task completion speed up</div></div>
+        <div class="b1-row"><div class="ic">🛡️</div><div class="big zero"><span class="countup" data-target="0">0</span></div><div class="lab">Compliance incidents</div></div>
+        <div class="b1-row"><div class="ic">🔁</div><div class="big"><span class="countup" data-target="98" data-suffix="%">0%</span></div><div class="lab">Retained at renewal</div></div>
       </div>
     </div>
+    <div class="b1-impact reveal">
+      <div class="b1-imp"><b><span class="countup" data-target="2" data-suffix="×">0×</span></b><span>Faster legal reviews</span></div>
+      <div class="b1-imp"><b><span class="countup" data-target="30" data-suffix="%">0%</span></b><span>Faster sales proposals</span></div>
+      <div class="b1-imp"><b><span class="countup" data-target="90" data-suffix="%">0%</span></b><span>Completed training</span></div>
+    </div>
+    <p class="audit-note">Documented results from a Swiss organisation deployment audit, December 2025. Zero compliance incidents, 98% renewal retention, independently audited and validated.</p>
+    <div class="cta-row" style="margin-top:36px;margin-bottom:0">
+      <a class="btn-primary" data-url="assessment">Model Your Own ROI in 5 Minutes</a>
+    </div>
   </div>
 </section>
-<section id="testimonials" style="background:var(--bg-soft)">
+<section id="testimonials">
   <div class="container">
     <h2 class="section-title">What Colleagues Say</h2>
     <p class="section-intro">Selected LinkedIn recommendations from Microsoft, ex-Microsoft and partner colleagues. Full set available on LinkedIn.</p>
@@ -343,29 +513,23 @@ footer{padding:40px 0 32px;border-top:1px solid var(--card-border);text-align:ce
     </div>
   </div>
 </section>
-<section id="insights">
+<section id="story" style="background:var(--bg-soft)">
   <div class="container">
-    <h2 class="section-title">Recent Insights</h2>
-    <p class="section-intro">Selected posts from LinkedIn. A 30,000 seat enterprise case study, thought leadership on the 2026 Work Trend Index, and frameworks I have shipped in recent weeks.</p>
-    <div class="embed-gallery">
-      <div class="embed-item"><div data-linkedin-post="7477667555747299328" data-linkedin-type="ugcPost" data-height="557"></div><div class="embed-caption">30,000 seat enterprise case study</div></div>
-      <div class="embed-item"><div data-linkedin-post="7450892733809876992" data-linkedin-type="ugcPost" data-height="807"></div><div class="embed-caption">Featured LinkedIn post</div></div>
-      <div class="embed-item"><div data-linkedin-post="7472062678300184576" data-linkedin-type="share" data-height="448"></div><div class="embed-caption">Featured LinkedIn post</div></div>
-      <div class="embed-item"><div data-linkedin-post="7480207953300561920" data-linkedin-type="ugcPost" data-height="557"></div><div class="embed-caption">Featured LinkedIn post</div></div>
-      <div class="embed-item"><div data-linkedin-post="7465845765274329089" data-linkedin-type="ugcPost" data-height="675"></div><div class="embed-caption">2026 Work Trend Index analysis</div></div>
-      <div class="embed-item"><div data-linkedin-post="7472621853866561536" data-linkedin-type="ugcPost" data-height="589"></div><div class="embed-caption">Unlocking Copilot value</div></div>
-      <div class="embed-item"><div data-linkedin-post="7472622391177801728" data-linkedin-type="ugcPost" data-height="589"></div><div class="embed-caption">Copilot Chat guide</div></div>
-      <div class="embed-item"><div data-linkedin-post="7471135093814640640" data-linkedin-type="ugcPost" data-height="589"></div><div class="embed-caption">Prompting best practices</div></div>
-      <div class="embed-item"><div data-linkedin-post="7472622895765102592" data-linkedin-type="ugcPost" data-height="589"></div><div class="embed-caption">M365 Copilot Applications</div></div>
-      <div class="embed-item"><div data-linkedin-post="7475879710271602688" data-linkedin-type="share" data-height="607"></div><div class="embed-caption">Featured LinkedIn post</div></div>
+    <div class="story-wrap">
+      <span class="badge">Behind the Numbers</span>
+      <h2 class="section-title">Resilience Behind the 30,000 License Milestone</h2>
+      <p>Before this rollout closed, the year unraveled in a very unexpected way. A round of layoffs. Days later, a hospital admission for SSHL, the kind that arrives without warning. Weeks of quiet, deliberate recovery followed.</p>
+      <p>Exactly one year later eventually closed on the largest Microsoft 365 Copilot deployment of career to date. Enterprise adoption work is rarely a straight line, and sometimes the leaders you want inside your rollout are the ones who have already been through the storm.</p>
+      <div class="story-embed">
+        <div data-linkedin-post="7338551614292602880" data-linkedin-type="share" data-height="691"></div>
+      </div>
     </div>
-    <p class="gallery-hint">Scroll horizontally to see all posts</p>
   </div>
 </section>
-<section id="resources" style="background:var(--bg-soft)">
+<section id="resources">
   <div class="container">
     <h2 class="section-title">Free Resources</h2>
-    <p class="section-intro">Four ways to sample the methodology before we speak.</p>
+    <p class="section-intro">Five ways to sample the methodology before we speak.</p>
     <div class="resource-hero">
       <span class="badge">Masterclass in Deployment</span>
       <h3>30 Day Copilot Adoption Guide</h3>
@@ -385,13 +549,32 @@ footer{padding:40px 0 32px;border-top:1px solid var(--card-border);text-align:ce
         <p>Weekly newsletter with 1,700 plus subscribers. Frontline lessons from Copilot rollouts, market intelligence, and change management frameworks.</p>
         <span class="resource-link">Subscribe on LinkedIn →</span>
       </a>
-      <a class="resource-card" data-url="podcast">
-        <div class="resource-icon">🎧</div>
-        <h4>Podcast: Unlocking Business Value with M365 Copilot</h4>
-        <p>Change leadership perspective on AI transformation for over 1 million seats, 98 percent satisfaction and $50M in revenue impact.</p>
-        <span class="resource-link">Listen now →</span>
+      <a class="resource-card" data-url="roicalc">
+        <div class="resource-icon">📊</div>
+        <h4>Leadership Team ROI Calculator</h4>
+        <p>An interactive, anonymous dashboard that shows total investment, financial impact, hours saved and projected returns. The exact answer when your CFO asks about Copilot ROI this quarter.</p>
+        <span class="resource-link">Open the calculator →</span>
+      </a>
+      <a class="resource-card" data-url="learn">
+        <div class="resource-icon">🤖</div>
+        <h4>Agentic Enterprise Transformation Academy</h4>
+        <p>One place with the resources to guide your journey to agentic transformation — building, deploying and managing agents with Microsoft tools and platforms.</p>
+        <span class="resource-link">Enter the Academy →</span>
       </a>
     </div>
+  </div>
+</section>
+<section id="insights" style="background:var(--bg-soft)">
+  <div class="container">
+    <h2 class="section-title">Recent Insights</h2>
+    <p class="section-intro">Selected posts from LinkedIn. A 30,000 seat enterprise case study, thought leadership on the 2026 Work Trend Index, and frameworks I have shipped in recent weeks.</p>
+    <div class="embed-gallery">
+      <div class="embed-item"><div data-linkedin-post="7477667555747299328" data-linkedin-type="ugcPost" data-height="557"></div><div class="embed-caption">30,000 seat enterprise case study</div></div>
+      <div class="embed-item"><div data-linkedin-post="7450892733809876992" data-linkedin-type="ugcPost" data-height="807"></div><div class="embed-caption">Featured LinkedIn post</div></div>
+      <div class="embed-item"><div data-linkedin-post="7472062678300184576" data-linkedin-type="share" data-height="448"></div><div class="embed-caption">Featured LinkedIn post</div></div>
+      <div class="embed-item"><div data-linkedin-post="7490370327726768128" data-linkedin-type="ugcPost" data-height="674"></div><div class="embed-caption">Featured LinkedIn post</div></div>
+    </div>
+    <p class="gallery-hint">Scroll horizontally to see all posts</p>
   </div>
 </section>
 <section id="demand-gen">
@@ -456,11 +639,13 @@ footer{padding:40px 0 32px;border-top:1px solid var(--card-border);text-align:ce
     <h2 class="section-title">Start a Conversation</h2>
     <p class="section-intro">Pick whichever channel suits how you like to work.</p>
     <div class="contact-cards">
+      <a class="contact-card highlight" data-url="assessment"><span class="ico">🧪</span><div class="title">AI Readiness Self Assessment</div><div class="sub">5 minute self assessment</div></a>
       <a class="contact-card" data-url="topmate"><span class="ico">📅</span><div class="title">Book a Session</div><div class="sub">Discovery, advisory or partner call</div></a>
       <a class="contact-card" data-url="linkedin"><span class="ico">💼</span><div class="title">LinkedIn</div><div class="sub">Follow and DM</div></a>
       <a class="contact-card" data-url="email"><span class="ico">✉️</span><div class="title">Email</div><div class="sub">george at copilotadoption.uk</div></a>
       <a class="contact-card" data-url="deck"><span class="ico">📄</span><div class="title">Partner Deck</div><div class="sub">For MSPs and resellers</div></a>
       <a class="contact-card" data-url="github"><span class="ico">🐙</span><div class="title">Github</div><div class="sub">Deployed AI projects</div></a>
+      <a class="contact-card" data-url="trainer"><span class="ico">🎓</span><div class="title">Team Training</div><div class="sub">Hire me to train your team on AI</div></a>
     </div>
   </div>
 </section>
@@ -476,6 +661,10 @@ footer{padding:40px 0 32px;border-top:1px solid var(--card-border);text-align:ce
   var mailto = ["mail","to",":"].join("");
   var urls = {
     topmate: proto + "topmate.io/socialselling",
+    assessment: proto + "topmate.io/socialselling/2155157",
+    trainer: proto + "trainer.copilotadoption.uk/",
+    learn: proto + "learn.copilotadoption.uk/",
+    roicalc: proto + "www.linkedin.com/pulse/your-cfo-ask-copilot-roi-quarter-heres-answer-george-tsoupis-zetde/",
     linkedin: proto + "www.linkedin.com/in/george-tsoupis-ai-program-manager/",
     recommendations: proto + "www.linkedin.com/in/george-tsoupis-ai-program-manager/details/recommendations/",
     deck: proto + "docs.google.com/presentation/d/1MWDSuGDiWE74JoQIT6iRFv88YeeHV36kh6mFHr7s9Yg/edit?usp=sharing",
@@ -520,6 +709,47 @@ footer{padding:40px 0 32px;border-top:1px solid var(--card-border);text-align:ce
     iframe.title = "LinkedIn post";
     el.appendChild(iframe);
   });
+  // Scroll reveal + count-up animation for the CFO case study
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function fmt(n, el){
+    return el.getAttribute("data-format") === "comma" ? n.toLocaleString("en-US") : String(n);
+  }
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute("data-target"));
+    var suffix = el.getAttribute("data-suffix") || "";
+    var prefix = el.getAttribute("data-prefix") || "";
+    var duration = 1400, start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + fmt(Math.round(target * eased), el) + suffix;
+      if(p < 1){ requestAnimationFrame(step); }
+      else { el.textContent = prefix + fmt(target, el) + suffix; }
+    }
+    requestAnimationFrame(step);
+  }
+  if("IntersectionObserver" in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add("visible");
+          e.target.querySelectorAll(".countup").forEach(function(c){
+            if(!c.dataset.done){ c.dataset.done = "1"; animateCount(c); }
+          });
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.15, rootMargin: "0px 0px -8% 0px"});
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("visible"); });
+    document.querySelectorAll(".countup").forEach(function(c){
+      var n = parseFloat(c.getAttribute("data-target"));
+      var out = c.getAttribute("data-format") === "comma" ? n.toLocaleString("en-US") : String(n);
+      c.textContent = (c.getAttribute("data-prefix") || "") + out + (c.getAttribute("data-suffix") || "");
+    });
+  }
 })();
 </script>
 </body>
